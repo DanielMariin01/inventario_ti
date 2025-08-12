@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\EstadoEquipo;
 use App\Filament\Resources\EquipoResource\Pages;
 use App\Filament\Resources\EquipoResource\RelationManagers;
 use App\Models\Equipo;
@@ -13,7 +14,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use PhpParser\Node\Stmt\Label;
-
+use Filament\Tables\Columns\BadgeColumn;
 class EquipoResource extends Resource
 {
     protected static ?string $model = Equipo::class;
@@ -71,8 +72,13 @@ class EquipoResource extends Resource
                 Forms\Components\Select::make('fk_tipo_adquisicion')
                     ->relationship('tipoAdquisicion', 'nombre_tipo')
                     ->required(),
+             Forms\Components\Select::make('estado_equipo')
+                    ->label('Estado de Solicitud')
+                    ->options(EstadoEquipo::class)
+                    ->required()
+                    ->native(false),
              
-                Forms\Components\Textarea::make('observaciones'),
+                Forms\Components\Textarea::make('observacion'),
                 Forms\Components\DatePicker::make('fecha_ingreso')
                 ->required(),
                 
@@ -108,7 +114,17 @@ class EquipoResource extends Resource
                 Tables\Columns\TextColumn::make('discoDuro.nombre')->label('Disco Duro'),
                 Tables\Columns\TextColumn::make('sistemaOperativo.nombre'),
                 Tables\Columns\TextColumn::make('tipoAdquisicion.nombre_tipo')->label('Tipo de Adquisición'),
-                Tables\Columns\TextColumn::make('estado_equipo'),
+                BadgeColumn::make('estado_equipo')
+                    ->label('Estado')
+                    ->formatStateUsing(fn (string $state) => EstadoEquipo::from($state)->label())
+                    ->color(fn (string $state) => EstadoEquipo::from($state)->getColor())
+                    ->formatStateUsing(function ($state) {
+                        try {
+                            return EstadoEquipo::from($state)->label();
+                        } catch (\ValueError $e) {
+                            return $state;
+                        }
+                    }),
                           Tables\Columns\TextColumn::make('created_at')
                     ->label('Creado el')
                     ->dateTime(),

@@ -27,7 +27,7 @@ class Equipo extends Model
         'serial',
         'mac',
         'ip',
-        'observaciones',
+        'observacion',
         'estado_equipo',
         'fecha_ingreso',
         
