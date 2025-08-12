@@ -8,9 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Equipo extends Model
 {
     use HasFactory;
-    protected $table = 'equipos';
+    protected $table = 'equipo';
     protected $primaryKey = 'id_equipo';
-
 
 
     protected $fillable = [
@@ -51,6 +50,11 @@ class Equipo extends Model
     {
         return $this->belongsTo(Procesador::class, 'fk_procesador', 'id_procesador');
     }
+
+       public function ram()
+    {
+        return $this->belongsTo(Ram::class, 'fk_ram', 'id_ram');
+    }
     public function memoria()
     {       
         return $this->belongsTo(Memoria::class, 'fk_ram', 'id_memoria');
@@ -67,11 +71,7 @@ class Equipo extends Model
     {
         return $this->belongsTo(Tipo_adquisicion::class, 'fk_tipo_adquisicion', 'id_tipo_adquisicion');
     }
+ 
      
-
-
-
-
-
 
 }

@@ -12,7 +12,7 @@ class Tipo_adquisicion extends Model
     protected $table = 'tipo_adquisicion';
     protected $primaryKey = 'id_tipo_adquisicion';
     protected $fillable = [
-        'nombre',
+        'nombre_tipo',
         'descripcion',
     ];
 }
