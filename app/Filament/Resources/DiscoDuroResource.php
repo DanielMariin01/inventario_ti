@@ -18,7 +18,9 @@ class DiscoDuroResource extends Resource
 {
     protected static ?string $model = Disco_duro::class;
 
- protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
+protected static ?string $navigationIcon = 'heroicon-o-server-stack';
+
+
       protected static ?string $navigationGroup = 'Administración';
     protected static ?int $navigationSort = 1;
     protected static ?string $navigationLabel = 'Discos Duros';

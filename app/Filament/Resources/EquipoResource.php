@@ -128,12 +128,7 @@ protected static ?string $navigationIcon = 'heroicon-o-computer-desktop';
                             return $state;
                         }
                     }),
-                          Tables\Columns\TextColumn::make('created_at')
-                    ->label('Creado el')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->label('Actualizado el')
-                    ->dateTime(),
+                     
             ])
             ->filters([
                 //filtro por serial
