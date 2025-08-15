@@ -18,8 +18,11 @@ use Filament\Tables\Columns\BadgeColumn;
 class EquipoResource extends Resource
 {
     protected static ?string $model = Equipo::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+protected static ?string $navigationIcon = 'heroicon-o-computer-desktop';
+      protected static ?string $navigationGroup = 'Inventario';
+    protected static ?int $navigationSort = 1;
+    protected static ?string $navigationLabel = 'Equipos';
+  
 
     public static function form(Form $form): Form
     {

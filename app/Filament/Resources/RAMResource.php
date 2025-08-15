@@ -16,8 +16,10 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class RAMResource extends Resource
 {
     protected static ?string $model = RAM::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+ protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
+      protected static ?string $navigationGroup = 'Administración';
+    protected static ?int $navigationSort = 1;
+    protected static ?string $navigationLabel = 'Memoria RAM';
 
 
     public static function form(Form $form): Form
