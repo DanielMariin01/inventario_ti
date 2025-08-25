@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ModeloResource\Pages;
-use App\Filament\Resources\ModeloResource\RelationManagers;
-use App\Models\Modelo;
+use App\Filament\Resources\SedeResource\Pages;
+use App\Filament\Resources\SedeResource\RelationManagers;
+use App\Models\Sede;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,23 +13,26 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ModeloResource extends Resource
+class SedeResource extends Resource
 {
-    protected static ?string $model = Modelo::class;
+    protected static ?string $model = Sede::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-folder';
-      protected static ?string $navigationGroup = 'Administración';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    protected static ?string $navigationGroup = 'Administración';
     protected static ?int $navigationSort = 1;
-    protected static ?string $navigationLabel = 'Modelo';
-
+    protected static ?string $navigationLabel = 'Sede';
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                Forms\Components\Select::make('fk_ciudad')
+                    ->label('Ciudad')
+                    ->relationship('ciudad', 'nombre')
+                    ->required(),
                 Forms\Components\TextInput::make('nombre')
                     ->required()
-                    ->maxLength(255)
-                    ->label('Nombre del Modelo'),
+                    ->maxLength(255),
             ]);
     }
 
@@ -37,19 +40,16 @@ class ModeloResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id_modelo')
-                    ->label('ID'),
-                Tables\Columns\TextColumn::make('nombre')
-                    ->label('Nombre del Modelo'),
-                //created_at and updated_at 
+                Tables\Columns\TextColumn::make('nombre')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label('Creado el')
-                    ->dateTime(),
+                    ->dateTime()
+                    ->sortable()
+                    ->label('Creado'),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->label('Actualizado el')
-                    ->dateTime(),
-
-         ])
+                    ->dateTime()
+                    ->sortable()
+                    ->label('Actualizado'),
+            ])
             ->filters([
                 //
             ])
@@ -73,9 +73,9 @@ class ModeloResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListModelos::route('/'),
-            'create' => Pages\CreateModelo::route('/create'),
-            'edit' => Pages\EditModelo::route('/{record}/edit'),
+            'index' => Pages\ListSedes::route('/'),
+            'create' => Pages\CreateSede::route('/create'),
+            'edit' => Pages\EditSede::route('/{record}/edit'),
         ];
     }
 }

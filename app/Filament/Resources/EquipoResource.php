@@ -60,11 +60,11 @@ protected static ?string $navigationIcon = 'heroicon-o-computer-desktop';
                     ->relationship('procesador', 'nombre')
                     ->required(),
                 Forms\Components\Select::make('fk_ram')
-                    ->relationship('ram', 'nombre')
+                    ->relationship('ram', 'capacidad')
                     ->required()
                     ->Label('Memoria RAM'),
                 Forms\Components\Select::make('fk_memoria')
-                    ->relationship('memoria', 'nombre')
+                    ->relationship('memoria', 'capacidad')
                     ->required(),
                 Forms\Components\Select::make('fk_disco_duro')
                     ->relationship('discoDuro', 'nombre')

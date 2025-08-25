@@ -11,6 +11,8 @@ enum EstadoEquipo: string
 
     case MANTENIMIENTO = 'mantenimiento';
     case DAÑADO = 'dañado';
+
+    case DEBAJA = 'debaja';
     
 
  
@@ -27,6 +29,7 @@ enum EstadoEquipo: string
             self::ASIGNADO => 'asignado',
             self::MANTENIMIENTO => 'mantenimiento',
             self::DAÑADO => 'dañado',
+            self::DEBAJA => 'debaja',
 
         };
     }
@@ -45,6 +48,7 @@ enum EstadoEquipo: string
             self::ASIGNADO=> 'gray', // Rojo
             self::MANTENIMIENTO=> 'warning',
             self::DAÑADO=> 'danger',// Gris
+            self::DEBAJA=> 'secondary', // Naranja
          
         };
     }

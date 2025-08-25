@@ -18,7 +18,7 @@ class UnidadResource extends Resource
     protected static ?string $model = Unidad::class;
 
 
- protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
+ protected static ?string $navigationIcon = 'heroicon-o-list-bullet';
       protected static ?string $navigationGroup = 'Administración';
     protected static ?int $navigationSort = 1;
     protected static ?string $navigationLabel = 'Unidad de Medida';
